@@ -7,11 +7,10 @@ import { YAxis, XAxis } from './Axes';
 import { YGrid } from './YGrid';
 
 import { ChartData, ChartDataRow } from './types/ChartData';
-import { XScale, YScale } from "./types/Scales";
-import { CommonChartProps } from "./types/CommonChartProps";
+import { XScale, YScale } from './types/Scales';
+import { CommonChartProps } from './types/CommonChartProps';
 
 import './Linechart.css';
-import {number} from "prop-types";
 
 
 type LineChartMargins = {

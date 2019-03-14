@@ -3,7 +3,7 @@ import * as React from 'react';
 import { XScale, YScale } from './types/Scales';
 import { ChartDataRow } from './types/ChartData';
 
-import "./Dots.css"
+import './Dots.css';
 
 
 interface DotsProps {

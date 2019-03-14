@@ -1,6 +1,6 @@
-import * as React from "react";
+import * as React from 'react';
 
-import { XScale, YScale } from "./types/Scales";
+import { XScale, YScale } from './types/Scales';
 
 
 interface WrapperProps {

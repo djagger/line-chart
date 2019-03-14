@@ -4,7 +4,7 @@ import * as d3 from 'd3';
 import LineChart from './Linechart';
 
 import { ChartData } from './types/ChartData';
-import { CommonChartProps } from "./types/CommonChartProps";
+import { CommonChartProps } from './types/CommonChartProps';
 
 
 interface ZoomChartWrapperProps extends CommonChartProps {

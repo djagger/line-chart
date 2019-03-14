@@ -3,7 +3,7 @@ import * as d3 from 'd3';
 
 import ComponentWrapper from './ComponentWrapper';
 
-import "./YGrid.css"
+import './YGrid.css'
 
 
 export const YGrid = ComponentWrapper(function() {

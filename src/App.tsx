@@ -111,5 +111,3 @@ export default class App extends React.Component<Props, State> {
         this.setState({width: width, height: height})
     }
 }
-
-ReactDOM.render(<App/>, document.getElementById("root"));
