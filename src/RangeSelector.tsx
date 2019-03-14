@@ -16,10 +16,6 @@ export default class RangeSelector extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
 
-        this.handleFromChange = this.handleFromChange.bind(this);
-        this.handleToChange = this.handleToChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-
         this.state = {
             from: this.props.from,
             to: this.props.to
@@ -48,15 +44,15 @@ export default class RangeSelector extends React.Component<Props, State> {
         );
     }
 
-    handleFromChange(e: React.ChangeEvent<HTMLInputElement>) {
+    handleFromChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         this.setState({from: e.target.value});
     }
 
-    handleToChange(e: React.ChangeEvent<HTMLInputElement>) {
+    handleToChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         this.setState({to: e.target.value});
     }
 
-    handleSubmit() {
+    handleSubmit = () => {
         this.props.handleSelect(this.state.from, this.state.to);
     }
 }

@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-import { XScale, YScale } from './types/scales';
-import { ChartDataRow } from './types/chartdata';
+import { XScale, YScale } from './types/Scales';
+import { ChartDataRow } from './types/ChartData';
 
-import "./dots.css"
+import "./Dots.css"
 
 
 interface DotsProps {

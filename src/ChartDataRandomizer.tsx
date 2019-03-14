@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import ChartDataGenerator from './chartdatagenerator';
+import ChartDataGenerator from './ChartDataGenerator';
 
 
 interface Props {
@@ -18,9 +18,6 @@ export default class ChartDataRandomizer extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
 
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleFromChange = this.handleFromChange.bind(this);
-
         this.generator = new ChartDataGenerator();
 
         this.state = {
@@ -34,7 +31,6 @@ export default class ChartDataRandomizer extends React.Component<Props, State> {
                 <input
                     type="text"
                     placeholder="dots amount"
-                    value={this.state.dotsAmount}
                     onChange={this.handleFromChange}
                 />
                 <button onClick={this.handleSubmit}>Generate random data</button>
@@ -42,11 +38,11 @@ export default class ChartDataRandomizer extends React.Component<Props, State> {
         );
     }
 
-    handleFromChange(e: React.ChangeEvent<HTMLInputElement>) {
+    handleFromChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         this.setState({dotsAmount: e.target.value});
     }
 
-    handleSubmit() {
+    handleSubmit = () => {
         this.props.handleChartDataUpdate(this.generator.do(this.state.dotsAmount));
     }
 }

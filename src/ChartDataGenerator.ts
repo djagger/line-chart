@@ -1,6 +1,6 @@
 import * as d3 from 'd3';
 
-import { ChartData } from './types/chartdata';
+import { ChartData } from './types/ChartData';
 
 
 export default class ChartDataGenerator {

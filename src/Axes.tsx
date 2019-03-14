@@ -1,6 +1,6 @@
 import * as d3 from "d3";
 
-import ComponentWrapper from './componentwrapper';
+import ComponentWrapper from './ComponentWrapper';
 
 
 export const YAxis = ComponentWrapper(function() {

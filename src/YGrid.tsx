@@ -1,9 +1,9 @@
 import * as React from 'react';
 import * as d3 from 'd3';
 
-import ComponentWrapper from './componentwrapper';
+import ComponentWrapper from './ComponentWrapper';
 
-import "./grid.css"
+import "./YGrid.css"
 
 
 export const YGrid = ComponentWrapper(function() {

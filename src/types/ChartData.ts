@@ -3,4 +3,4 @@ export type ChartDataRow = {
     count: number;
 }
 
-export type ChartData = Array<ChartDataRow>
+export type ChartData = ChartDataRow[]

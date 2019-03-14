@@ -1,7 +1,6 @@
 export interface CommonChartProps {
     width, height: number;
-    yAxisTo: number;
-    yAxisFrom: number;
+    yAxisFrom, yAxisTo: number;
     xAxisFrom?, xAxisTo?: number;
     isShowGrid: boolean;
 }

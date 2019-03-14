@@ -1,15 +1,17 @@
 import * as React from 'react';
 import * as d3 from 'd3';
+import memoize from 'memoize-one';
 
-import Dots from './dots';
-import { YAxis, XAxis } from './axis';
-import { YGrid } from './grid';
+import Dots from './Dots';
+import { YAxis, XAxis } from './Axes';
+import { YGrid } from './YGrid';
 
-import { ChartData, ChartDataRow } from './types/chartdata';
-import { XScale, YScale } from "./types/scales";
-import { CommonChartProps } from "./types/commonchartprops";
+import { ChartData, ChartDataRow } from './types/ChartData';
+import { XScale, YScale } from "./types/Scales";
+import { CommonChartProps } from "./types/CommonChartProps";
 
-import './linechart.css';
+import './Linechart.css';
+import {number} from "prop-types";
 
 
 type LineChartMargins = {
@@ -44,7 +46,9 @@ export default class LineChart extends React.Component<LineChartProps, {}> {
         this.updateD3(nextProps);
     }
 
-    updateD3(props) {
+    // Wrap it on memoize for not to call the function
+    // unless the desired props parameters are changed.
+    updateD3 = memoize((props) => {
         const { width, height,
             yAxisFrom, yAxisTo,
             xAxisFrom, xAxisTo,
@@ -54,14 +58,37 @@ export default class LineChart extends React.Component<LineChartProps, {}> {
         this.w = width - this.margin.left - this.margin.right;
         this.h = height - this.margin.top - this.margin.bottom;
 
+        // Y scale validation
+        let yFrom = this.yDefaultRange[0];
+        if (!isNaN(yAxisFrom)) {
+            yFrom = yAxisFrom
+        }
+
+        let yTo = this.yDefaultRange[1];
+        if (!isNaN(yAxisTo)) {
+            yTo = yAxisTo
+        }
+
         this.yScale = d3.scaleLinear()
-            .domain([yAxisFrom || this.yDefaultRange[0], yAxisTo || this.yDefaultRange[1]])
+            .domain([yFrom, yTo])
             .range([this.h, 0]);
+
 
         const xScaleDomain = d3.extent(data, d => d['step']) as Extent;
 
+        // X scale validation
+        let xFrom = xScaleDomain[0];
+        if (!isNaN(xAxisFrom)) {
+            xFrom = xAxisFrom
+        }
+
+        let xTo = xScaleDomain[1];
+        if (!isNaN(xAxisTo)) {
+            xTo = xAxisTo
+        }
+
         this.xScale = d3.scaleLinear()
-            .domain([xAxisFrom || xScaleDomain[0], xAxisTo || xScaleDomain[1]])
+            .domain([xFrom, xTo])
             .range([0, this.w]);
 
         this.line = d3.line<ChartDataRow>()
@@ -73,7 +100,7 @@ export default class LineChart extends React.Component<LineChartProps, {}> {
             this.xScale.domain(zoomTransform.rescaleX(this.xScale).domain());
             this.yScale.domain(zoomTransform.rescaleY(this.yScale).domain());
         }
-    }
+    });
 
     get transform() {
         return `translate(${this.margin.left}, ${this.margin.top})`;
